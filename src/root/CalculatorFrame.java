@@ -55,6 +55,7 @@ public class CalculatorFrame extends JFrame {
     public void constructLeft() {
         Box boxLeft = Box.createVerticalBox();
 
+        //RADIO-BUTTONS
         ButtonGroup groupRadio = new ButtonGroup();
         Box boxRadio = Box.createHorizontalBox();
 
@@ -90,7 +91,26 @@ public class CalculatorFrame extends JFrame {
         groupRadio.add(memory3);
         boxRadio.add(memory3);
 
-        boxContent.add(boxRadio);
+        groupRadio.setSelected(groupRadio.getElements().nextElement().getModel(), true);
+
+        boxLeft.add(boxRadio);
+
+        //LABELS
+        for (int i = 0; i < 3; i++) {
+            labelsMemory[i] = new JLabel(String.valueOf(memory[i]));
+        }
+
+        Box boxMemoryLabels = Box.createHorizontalBox();
+        boxMemoryLabels.add(Box.createHorizontalGlue());
+        boxMemoryLabels.add(labelsMemory[0]);
+        boxMemoryLabels.add(Box.createHorizontalStrut(30));
+        boxMemoryLabels.add(labelsMemory[1]);
+        boxMemoryLabels.add(Box.createHorizontalStrut(30));
+        boxMemoryLabels.add(labelsMemory[2]);
+        boxMemoryLabels.add(Box.createHorizontalGlue());
+
+        boxLeft.add(boxMemoryLabels);
+        
     }
 
     CalculatorFrame() {
