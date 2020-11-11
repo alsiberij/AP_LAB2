@@ -54,6 +54,7 @@ public class CalculatorFrame extends JFrame {
 
     public void constructLeft() {
         Box boxLeft = Box.createVerticalBox();
+        boxLeft.add(Box.createVerticalGlue());
 
         //RADIO-BUTTONS
         ButtonGroup groupRadio = new ButtonGroup();
@@ -91,6 +92,7 @@ public class CalculatorFrame extends JFrame {
         groupRadio.add(memory3);
         boxRadio.add(memory3);
 
+        boxRadio.add(Box.createHorizontalGlue());
         groupRadio.setSelected(groupRadio.getElements().nextElement().getModel(), true);
 
         boxLeft.add(boxRadio);
@@ -110,7 +112,43 @@ public class CalculatorFrame extends JFrame {
         boxMemoryLabels.add(Box.createHorizontalGlue());
 
         boxLeft.add(boxMemoryLabels);
-        
+
+        //ACTION BUTTONS
+        Box boxActions = Box.createHorizontalBox();
+        boxActions.add(Box.createHorizontalGlue());
+
+        JButton mPlus = new JButton("M+");
+        mPlus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double value = 0;
+                try {
+                    value = Double.parseDouble(fieldResult.getText());
+                } catch (NumberFormatException exception) {
+                    JOptionPane.showMessageDialog(CalculatorFrame.this, "Invalid arguments");
+                }
+                memory[currentMemorySection] += value;
+                labelsMemory[currentMemorySection].setText(String.valueOf(memory[currentMemorySection]));
+            }
+        });
+        boxActions.add(mPlus);
+
+        JButton mClear = new JButton("MC");
+        mClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                memory[currentMemorySection] = 0;
+                labelsMemory[currentMemorySection].setText("0.0");
+            }
+        });
+        boxActions.add(mClear);
+        boxActions.add(Box.createHorizontalGlue());
+
+        boxLeft.add(boxActions);
+
+        boxLeft.add(Box.createVerticalGlue());
+
+        boxContent.add(boxLeft);
     }
 
     CalculatorFrame() {
@@ -130,6 +168,8 @@ public class CalculatorFrame extends JFrame {
 
         //RIGHT
 
+
+        boxContent.add(Box.createVerticalGlue());
 
         add(boxContent);
     }
