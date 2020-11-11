@@ -251,6 +251,20 @@ public class CalculatorFrame extends JFrame {
 
         boxRight.add(boxVariables);
 
+        //RESULT
+        Box boxResult = Box.createHorizontalBox();
+        boxResult.add(Box.createHorizontalGlue());
+
+        fieldResult = new JTextField("0.0", 20);
+        fieldResult.setMaximumSize(fieldResult.getPreferredSize());
+
+        boxResult.add(new JLabel("Result: "));
+        boxResult.add(Box.createHorizontalStrut(30));
+        boxResult.add(fieldResult);
+        boxResult.add(Box.createHorizontalGlue());
+
+        boxRight.add(boxResult);
+
         boxContent.add(boxRight);
     }
 
