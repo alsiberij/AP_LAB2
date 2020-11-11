@@ -265,6 +265,43 @@ public class CalculatorFrame extends JFrame {
 
         boxRight.add(boxResult);
 
+        //ACTION BUTTONS
+        Box boxActions = Box.createHorizontalBox();
+        boxActions.add(Box.createHorizontalGlue());
+
+        JButton buttonCalc = new JButton("Calculate");
+        buttonCalc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double x = Double.parseDouble(fieldX.getText());
+                    double y = Double.parseDouble(fieldY.getText());
+                    double z = Double.parseDouble(fieldZ.getText());
+                    fieldResult.setText(String.valueOf(calculate(x, y, z)));
+                } catch (NumberFormatException exception) {
+                    JOptionPane.showMessageDialog(CalculatorFrame.this, "Invalid arguments");
+                }
+            }
+        });
+
+        JButton buttonClear = new JButton("Clear");
+        buttonClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fieldX.setText("0.0");
+                fieldY.setText("0.0");
+                fieldZ.setText("0.0");
+                fieldResult.setText("0.0");
+            }
+        });
+
+        boxActions.add(buttonCalc);
+        boxActions.add(Box.createHorizontalStrut(30));
+        boxActions.add(buttonClear);
+        boxActions.add(Box.createHorizontalGlue());
+
+        boxRight.add(boxActions);
+
         boxContent.add(boxRight);
     }
 
