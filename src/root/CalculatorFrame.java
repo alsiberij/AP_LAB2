@@ -2,6 +2,8 @@ package root;
 
 import javax.swing.*;
 
+import static java.lang.Math.*;
+
 public class CalculatorFrame extends JFrame {
 
     private enum Formula {FORMULA1, FORMULA2}
@@ -25,4 +27,26 @@ public class CalculatorFrame extends JFrame {
     private JLabel[] labelsMemory = new JLabel[3];
     short currentMemorySection = 0;
 
+
+    public double calculate(double x, double y, double z) {
+        switch (currentFormula) {
+            case FORMULA1: {
+                if (y <= 0) {
+                    throw new NumberFormatException();
+                }
+                return sin(log(y) + sin(PI * y * y))* sqrt(sqrt(x * x + sin(z) + exp(cos(z))));
+            }
+            case FORMULA2: {
+                if (1 + y <= 0 || x == 0) {
+                    throw new NumberFormatException();
+                }
+                return pow(pow(cos(exp(x)) + log((1 + y) * (1 + y)), 2) + sqrt(exp(cos(x)) + sin(PI * z) * sin(PI * x)) + sqrt(1 / x) + cos(y*y), sin(z));
+            }
+            default: {
+                return 0;
+            }
+        }
+    }
+
+    
 }
