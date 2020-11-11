@@ -224,6 +224,32 @@ public class CalculatorFrame extends JFrame {
 
         boxRight.add(boxRadio);
 
+        //VARIABLES
+        Box boxVariables = Box.createHorizontalBox();
+        boxVariables.add(Box.createHorizontalGlue());
+
+        fieldX = new JTextField("0.0", 20);
+        fieldX.setMaximumSize(fieldX.getPreferredSize());
+        fieldY = new JTextField("0.0", 20);
+        fieldY.setMaximumSize(fieldY.getPreferredSize());
+        fieldZ = new JTextField("0.0", 20);
+        fieldZ.setMaximumSize(fieldZ.getPreferredSize());
+
+        boxVariables.add(new JLabel("X: "));
+        boxVariables.add(Box.createHorizontalStrut(10));
+        boxVariables.add(fieldX);
+        boxVariables.add(Box.createHorizontalStrut(60));
+        boxVariables.add(new JLabel("Y: "));
+        boxVariables.add(Box.createHorizontalStrut(10));
+        boxVariables.add(fieldY);
+        boxVariables.add(Box.createHorizontalStrut(60));
+        boxVariables.add(new JLabel("Z: "));
+        boxVariables.add(Box.createHorizontalStrut(10));
+        boxVariables.add(fieldZ);
+        boxVariables.add(Box.createHorizontalStrut(60));
+        boxVariables.add(Box.createHorizontalGlue());
+
+        boxRight.add(boxVariables);
 
         boxContent.add(boxRight);
     }
