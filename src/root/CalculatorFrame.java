@@ -3,6 +3,8 @@ package root;
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import static java.lang.Math.*;
 
@@ -50,6 +52,47 @@ public class CalculatorFrame extends JFrame {
         }
     }
 
+    public void constructLeft() {
+        Box boxLeft = Box.createVerticalBox();
+
+        ButtonGroup groupRadio = new ButtonGroup();
+        Box boxRadio = Box.createHorizontalBox();
+
+        boxRadio.add(Box.createHorizontalGlue());
+
+        JRadioButton memory1 = new JRadioButton("M1");
+        memory1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CalculatorFrame.this.currentMemorySection = 0;
+            }
+        });
+        groupRadio.add(memory1);
+        boxRadio.add(memory1);
+
+        JRadioButton memory2 = new JRadioButton("M2");
+        memory2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CalculatorFrame.this.currentMemorySection = 1;
+            }
+        });
+        groupRadio.add(memory2);
+        boxRadio.add(memory2);
+
+        JRadioButton memory3 = new JRadioButton("M3");
+        memory3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CalculatorFrame.this.currentMemorySection = 2;
+            }
+        });
+        groupRadio.add(memory3);
+        boxRadio.add(memory3);
+
+        boxContent.add(boxRadio);
+    }
+
     CalculatorFrame() {
         super("Calculator");
         setSize(WIDTH, HEIGHT);
@@ -60,6 +103,14 @@ public class CalculatorFrame extends JFrame {
             memory[i] = 0;
         }
 
+        boxContent.add(Box.createHorizontalGlue());
 
+        //LEFT
+        constructLeft();
+
+        //RIGHT
+
+
+        add(boxContent);
     }
 }
