@@ -190,6 +190,41 @@ public class CalculatorFrame extends JFrame {
 
         boxRight.add(boxImages);
 
+        //RADIO-BUTTONS
+        ButtonGroup groupRadio = new ButtonGroup();
+        Box boxRadio = Box.createHorizontalBox();
+        boxRadio.add(Box.createHorizontalGlue());
+
+        JRadioButton buttonFormula1 = new JRadioButton("Formula 1");
+        buttonFormula1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CalculatorFrame.this.currentFormula = Formula.FORMULA1;
+                imgFormula1.setVisible(true);
+                imgFormula2.setVisible(false);
+            }
+        });
+        groupRadio.add(buttonFormula1);
+        boxRadio.add(buttonFormula1);
+
+        JRadioButton buttonFormula2 = new JRadioButton("Formula 2");
+        buttonFormula2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CalculatorFrame.this.currentFormula = Formula.FORMULA2;
+                imgFormula1.setVisible(false);
+                imgFormula2.setVisible(true);
+            }
+        });
+        groupRadio.add(buttonFormula2);
+        boxRadio.add(buttonFormula2);
+
+        boxRadio.add(Box.createHorizontalGlue());
+        groupRadio.setSelected(groupRadio.getElements().nextElement().getModel(), true);
+
+        boxRight.add(boxRadio);
+
+
         boxContent.add(boxRight);
     }
 
