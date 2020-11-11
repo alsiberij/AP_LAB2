@@ -1,10 +1,14 @@
 package root;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import static java.lang.Math.*;
 
@@ -151,6 +155,44 @@ public class CalculatorFrame extends JFrame {
         boxContent.add(boxLeft);
     }
 
+    public void constructRight() {
+        Box boxRight = Box.createVerticalBox();
+        boxRight.add(Box.createVerticalGlue());
+
+        //IMAGES
+        Box boxImages = Box.createHorizontalBox();
+        boxImages.add(Box.createHorizontalGlue());
+
+        BufferedImage buffer = null;
+        try {
+            buffer = ImageIO.read(new File("src/root/f1.png"));
+        } catch (IOException exception) {
+            throw new RuntimeException();
+        }
+        Image img = buffer.getScaledInstance(500, 50, Image.SCALE_SMOOTH);
+        ImageIcon icon = new ImageIcon(img);
+        imgFormula1 = new JLabel(icon);
+
+        try {
+            buffer = ImageIO.read(new File("src/root/f2.png"));
+        } catch (IOException exception) {
+            throw new RuntimeException();
+        }
+        img = buffer.getScaledInstance(800, 50, Image.SCALE_SMOOTH);
+        icon = new ImageIcon(img);
+        imgFormula2 = new JLabel(icon);
+
+        imgFormula2.setVisible(false);
+
+        boxImages.add(imgFormula1);
+        boxImages.add(imgFormula2);
+        boxImages.add(Box.createHorizontalGlue());
+
+        boxRight.add(boxImages);
+
+        boxContent.add(boxRight);
+    }
+
     CalculatorFrame() {
         super("Calculator");
         setSize(WIDTH, HEIGHT);
@@ -167,7 +209,7 @@ public class CalculatorFrame extends JFrame {
         constructLeft();
 
         //RIGHT
-
+        constructRight();
 
         boxContent.add(Box.createVerticalGlue());
 
