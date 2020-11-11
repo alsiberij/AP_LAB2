@@ -2,6 +2,8 @@ package root;
 
 import javax.swing.*;
 
+import java.awt.*;
+
 import static java.lang.Math.*;
 
 public class CalculatorFrame extends JFrame {
@@ -48,5 +50,16 @@ public class CalculatorFrame extends JFrame {
         }
     }
 
-    
+    CalculatorFrame() {
+        super("Calculator");
+        setSize(WIDTH, HEIGHT);
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        setLocation((tk.getScreenSize().width - WIDTH) / 2, (tk.getScreenSize().height - HEIGHT) / 2);
+
+        for (int i = 0; i < 3; i++) {
+            memory[i] = 0;
+        }
+
+
+    }
 }
